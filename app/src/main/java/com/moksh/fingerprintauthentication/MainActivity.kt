@@ -81,51 +81,53 @@ class MainActivity : AppCompatActivity() {
 //
 //            }
 //        ).show()
-    }
 
-    override fun onResume() {
-        super.onResume()
         FPAuthDialog.create(this)
             .setTitle("Login to Mifos X Android Client")
             .setMessage("Use your fingerpint to login")
             .setCallback(
-            object: FPAuthCallback {
-                override fun onCancel() {
-                    Toast.makeText(this@MainActivity,
-                        "Cancelled", Toast.LENGTH_LONG)
-                        .show()
-                }
+                object: FPAuthCallback {
+                    override fun onCancel() {
+                        Toast.makeText(this@MainActivity,
+                            "Cancelled", Toast.LENGTH_LONG)
+                            .show()
+                    }
 
-                override fun onBelowAndroidMarshmallow() {
-                    Toast.makeText(this@MainActivity,
-                        "Below Marshmallow", Toast.LENGTH_LONG)
-                        .show()
-                }
+                    override fun onBelowAndroidMarshmallow() {
+                        Toast.makeText(this@MainActivity,
+                            "Below Marshmallow", Toast.LENGTH_LONG)
+                            .show()
+                    }
 
-                override fun onNoFingerprintScannerAvailable() {
-                    Toast.makeText(this@MainActivity,
-                        "No Hardware Detected", Toast.LENGTH_LONG)
-                        .show()
-                }
+                    override fun onNoFingerprintScannerAvailable() {
+                        Toast.makeText(this@MainActivity,
+                            "No Hardware Detected", Toast.LENGTH_LONG)
+                            .show()
+                    }
 
-                override fun onNoFingerprintRegistered() {
-                    Toast.makeText(this@MainActivity,
-                        "Please register a fingerprint",
-                        Toast.LENGTH_LONG).show()
-                }
+                    override fun onNoFingerprintRegistered() {
+                        Toast.makeText(this@MainActivity,
+                            "Please register a fingerprint",
+                            Toast.LENGTH_LONG).show()
+                    }
 
-                override fun onFingerprintAuthSuccess(message: String) {
-                    startActivity(Intent(this@MainActivity,
-                        ActivitySuccess::class.java))
-                }
+                    override fun onFingerprintAuthSuccess(message: String) {
+                        startActivity(Intent(this@MainActivity,
+                            ActivitySuccess::class.java))
+                    }
 
-                override fun onFingerprintAuthFailed(errorMessage: String) {
-                    Toast.makeText(this@MainActivity, errorMessage,
-                        Toast.LENGTH_LONG).show()
-                }
+                    override fun onFingerprintAuthFailed(errorMessage: String) {
+                        Toast.makeText(this@MainActivity, errorMessage,
+                            Toast.LENGTH_LONG).show()
+                    }
 
-            }
-        ).show()
+                }
+            ).show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
     }
 
 }

@@ -9,15 +9,15 @@ import android.widget.TextView
 
 class FPAuthDialog private constructor(context: Context) : FingerprintNotSupportedCallback {
     override fun onBelowAndroidMarshmallow() {
-        dialog!!.dismiss()
+        dialog!!.cancel()
     }
 
     override fun onNoFingerprintScannerAvailable() {
-        dialog!!.dismiss()
+        dialog!!.cancel()
     }
 
     override fun onNoFingerprintRegistered() {
-        dialog!!.dismiss()
+        dialog!!.cancel()
     }
 
     private lateinit var context: Context
@@ -91,12 +91,13 @@ class FPAuthDialog private constructor(context: Context) : FingerprintNotSupport
         tvDialogTitle.text = title
         tvDialogMessage.text = message
         btnCancel.setOnClickListener {
+            fpAuthHelper.stopAuth()
             mFPAuthCallback.onCancel()
-            this.dismiss()
+            dialog!!.cancel()
         }
         builder.setView(dialogView)
         dialog = builder.create()
-        dialog!!.setCancelable(false)
+        //dialog!!.setCancelable(false)
         dialog!!.show()
 
         fpAuthHelper.startAuth()
