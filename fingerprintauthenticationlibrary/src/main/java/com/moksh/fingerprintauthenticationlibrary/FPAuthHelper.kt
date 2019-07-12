@@ -87,7 +87,7 @@ class FPAuthHelper(
                     handler.postDelayed(Runnable {
                         fpAuthCallback.onFingerprintAuthSuccess("Authentication Successful")
                     }, 800)
-
+                    fingerprintNotSupportedCallback.onSuccess()
                 }
 
             }, null)

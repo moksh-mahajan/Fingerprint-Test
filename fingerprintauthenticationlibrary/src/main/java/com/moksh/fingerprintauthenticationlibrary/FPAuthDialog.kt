@@ -8,6 +8,10 @@ import android.view.View
 import android.widget.TextView
 
 class FPAuthDialog private constructor(context: Context) : FingerprintNotSupportedCallback {
+    override fun onSuccess() {
+        dialog!!.cancel()
+    }
+
     override fun onBelowAndroidMarshmallow() {
         dialog!!.cancel()
     }
