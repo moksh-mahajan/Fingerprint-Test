@@ -97,7 +97,7 @@ class FPAuthDialog private constructor(context: Context) : FingerprintNotSupport
         }
         builder.setView(dialogView)
         dialog = builder.create()
-        //dialog!!.setCancelable(false)
+        dialog!!.setCancelable(false)
         dialog!!.show()
 
         fpAuthHelper.startAuth()
