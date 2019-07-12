@@ -85,9 +85,10 @@ class FPAuthHelper(
                         setImageResource(R.drawable.ic_check_circle_black_24dp)
                     dialogView.findViewById<TextView>(R.id.fingerprint_dialog_status).text = "Authentication Successful"
                     handler.postDelayed(Runnable {
+                        fingerprintNotSupportedCallback.onSuccess()
                         fpAuthCallback.onFingerprintAuthSuccess("Authentication Successful")
-                    }, 800)
-                    fingerprintNotSupportedCallback.onSuccess()
+                    }, 500)
+
                 }
 
             }, null)
